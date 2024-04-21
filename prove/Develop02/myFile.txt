@@ -1,0 +1,22 @@
+This is the first line in the file...2
+This is the second line in the file...2Blue
+This is the first line in the file...3
+This is the second line in the file...3Blue
+This is the first line in the file...5
+This is the second line in the file...5Blue
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:11:18 AM
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:12:36 AM
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:12:59 AM
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:16:28 AM
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:16:52 AM
+This is the first line in the file...5
+This is the second line in the file...5Blue|What's your favorite color?|4/21/2024 12:20:36 AM
