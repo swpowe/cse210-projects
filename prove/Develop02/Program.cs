@@ -1,54 +1,16 @@
+// I messed around with formatting a bit, added some additional prompts.
+// Investigated JSON a bit. 
+// Used some functions
 using System;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualBasic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // string filename;
-        // string[] lines;
-
-        // // Get the filename from the user
-        // Console.Write("Please enter a filename: ");
-        // filename = Console.ReadLine();
-
-        // // Append to file
-        // using (StreamWriter outputFile = new StreamWriter(filename, append: true)) {
-        //     string color = "Blue";
-        //     string prompt = "What's your favorite color?";
-        //     outputFile.WriteLine("This is the first line in the file...5");
-        //     outputFile.WriteLine($"This is the second line in the file...5{color}|{prompt}|{DateTime.Now}");
-        // }
-
-        // // Read Lines from file
-        // lines = System.IO.File.ReadAllLines(filename);
-
-        // foreach (string line in lines)
-        // {
-        //     string response, prompt;
-        //     string[] parts = line.Split("|");
-        //     DateTime date = DateTime.MinValue;
-
-        //     if(line.Contains("|")) {
-        //         response = parts[0];
-        //         prompt = parts[1];
-
-        //         if(parts.Length >= 3){
-        //             date = DateTime.Parse(parts[2]);
-        //         }
-        //     }else {
-        //         response = line;
-        //         prompt = "...";
-        //     }
-
-        //     Console.WriteLine($"Prompt: {prompt}.");
-        //     Console.WriteLine($"Response: {response}.");
-        //     Console.WriteLine($"Date: {date}.");
-        //     Console.WriteLine();
-
-        //     // Console.WriteLine(line);
-        // }
+        bool running = true;
 
         // display menu asking for user input 1 - 5
         string menu = @"Please select one of the following options:
@@ -59,9 +21,7 @@ class Program
         5. Add a new prompt
         6. Exit
         ";
-        int selection = 0;
-
-        // Prompts prompts = new Prompts();
+        
 
         List<string> prompts = new List<string>();
         prompts.Add("What is something meaningful that happened to you today?");
@@ -70,11 +30,15 @@ class Program
         prompts.Add("How did I see the hand of the Lord in my life today?");
         prompts.Add("What was the strongest emotion I felt today?");
         prompts.Add("If I had one thing I could do over today, what would it be?");
+        prompts.Add("What's something you hope to do better tomorrow?");
+        prompts.Add("What did you do to serve others today?");
 
-        while (selection == 0)
+        Journal currentJournal = new Journal();
+
+        while (running)
         {
             Console.WriteLine(menu);
-            selection = int.Parse(Console.ReadLine());
+            int selection = int.Parse(Console.ReadLine());
 
             switch (selection)
             {
@@ -82,38 +46,99 @@ class Program
                     Random random = new Random();
                     int promptIndex = random.Next(0, prompts.Count);
                     Console.WriteLine(prompts[promptIndex]);
-                    string entry = Console.ReadLine();
+                    Console.Write(">");
                     Entry newEntry = new Entry();
-                    Console.WriteLine(newEntry.CreateEntry(1, DateAndTime.Now, entry));
-                    selection = 0;
+                    string entry = Console.ReadLine();
+
+                    // create journal
+                    // save
+                    newEntry.CreateEntry(prompts[promptIndex], DateAndTime.Now, entry);
+                    currentJournal._entries.Add(newEntry);
+
+                    // selection = 0; // shouldn't exit do this better.
                     break;
                 case 2:
-                    Console.WriteLine("Two");
+                    currentJournal.DisplayJournal();
+                    // selection = 0; // shouldn't exit do this better.
                     break;
                 case 3:
                     Console.WriteLine("Three");
+                    SaveJournal(currentJournal);
+                    // selection = 0; // shouldn't exit do this better.
                     break;
                 case 4:
                     Console.WriteLine("Four");
+                    LoadJournal();
+                    // selection = 0; // shouldn't exit do this better.
                     break;
                 case 5:
-                    // Prompt newPrompt = new Prompt();
                     Console.WriteLine("Enter your prompt:");
                     string newPrompt = Console.ReadLine();
                     Console.WriteLine("Enter the category:");
-                    // newPrompt._category = Console.ReadLine();
                     prompts.Add(newPrompt);
-                    selection = 0;
                     break;
                 case 6:
-                    Console.WriteLine("Six");
-                    selection = 1;
+                    running = false;
                     Console.Clear();
                     break;
                 default:
-                    Console.WriteLine("Please enter a valid number. 5 to Exit"); // string not in correct format issue
+                    Console.WriteLine("Please enter a valid number. 5 to Exit");
                     break;
             }
         }
+        void SaveJournal(Journal currentJournal)
+        {
+            // // Get the filename from the user
+            Console.Write("Please enter a filename: ");
+            string filename = Console.ReadLine();
+
+            // // Append to file
+            using (StreamWriter outputFile = new StreamWriter(filename, append: false))
+            {
+                foreach (var entry in currentJournal._entries)
+                {
+                    outputFile.WriteLine($"{entry._timestamp}|{entry._prompt}|{entry._entry}");
+                }
+
+            }
+        }
+
+        void LoadJournal()
+        {
+            Console.WriteLine("Please enter the filename of the file you'd like to load.");
+            Console.Write(">");
+            string filename = Console.ReadLine();
+
+            // read lines from file into
+            string[] lines = System.IO.File.ReadAllLines(filename);
+            currentJournal._entries.Clear();
+            foreach (string line in lines)
+            {
+                // string prompt, entry;
+                string[] parts = line.Split("|");
+                // DateTime date = DateTime.MinValue;
+
+                if(line.Contains("|")) {
+                    // clear currentJournal
+                    
+                    Entry newEntry = new Entry();
+
+                    newEntry._timestamp = DateTime.Parse(parts[0]);
+                    newEntry._prompt = parts[1];
+                    newEntry._entry = parts[2];
+
+                    currentJournal._entries.Add(newEntry);
+
+                }else {
+                    Console.WriteLine("There was an error loading the file.");
+                }
+            }
+        }
     }
+
+
 }
+
+
+// currently if you write to the same file, it appends the entire journal to that file.
+// so when I loaded first_test then added a new entry, it duplicated the original entries.

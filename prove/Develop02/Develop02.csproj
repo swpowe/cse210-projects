@@ -12,6 +12,6 @@
     <Content Include="newFile.txt" />
     <Content Include="Entry.cs" />
     <Content Include="Prompts.cs" />
-    <Content Include="Prompt.cs" />
+    <Content Include="Journal.cs" />
   </ItemGroup>
 </Project>
