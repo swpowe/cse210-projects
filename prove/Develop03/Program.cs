@@ -76,6 +76,36 @@ class Program
                 running = false;
                 Console.Clear();
             }
+            else if (input == "add")
+            {
+                Console.WriteLine("User pressed add");
+                // prompt for book, chapter, start, end
+                // prompt scripture text
+                Console.WriteLine("Please enter the scripture reference in the following format\nbook,chapter,start verse, end verse.");
+                // move this to the class. remove / hide from this
+                string[] userReference = Console.ReadLine().Split(",");
+                
+                string book = userReference[0];
+                int chapter = Int32.Parse(userReference[1]);
+                int startVerse = Int32.Parse(userReference[2]);
+                int endVerse = Int32.Parse(userReference[3]);
+
+                Reference addReference = new Reference(book, chapter, startVerse, endVerse);
+
+                Console.WriteLine("Please enter the scripture.");
+                string[] newScripture = Console.ReadLine().Split(" ");
+                List<Word> newWords = new List<Word>();
+
+                foreach (var word in newScripture)
+                {
+                    Word newWord = new Word(word);
+                    newWords.Add(newWord);
+                }
+
+                Scripture addScripture = new Scripture(newWords); // takes words
+                addScripture.SetReference(addReference);
+
+            }
             else
             {
                 Console.WriteLine("Please type enter or quit.");

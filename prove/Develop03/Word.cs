@@ -2,6 +2,10 @@ public class Word {
     private bool _hidden;
     private string _text;
 
+    // public Word() {
+
+    // }
+
     public Word(string text) {
         _hidden = false;
         _text = text;
