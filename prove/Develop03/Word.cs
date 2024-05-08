@@ -18,4 +18,8 @@ public class Word {
     public bool GetHidden(){
         return _hidden;
     }
+
+    public void SetHidden(bool hidden){ // does this need to take a bool? Reset all back to defaults?
+        _hidden = hidden;
+    }
 }

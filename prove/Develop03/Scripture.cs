@@ -40,6 +40,17 @@ public class Scripture {
         Console.WriteLine();
         Console.WriteLine("---------------");
     }
+
+    // public Scripture GetScripture(){
+
+    //     return Scripture
+    // }
+    public void ShowAll(){
+        foreach (var word in _words)
+        {
+            word.SetHidden(false);
+        }
+    }
 }
 
 

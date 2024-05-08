@@ -12,35 +12,77 @@ class Program
         // turn this into a function...
         RunMainMenu();
 
+        //!! pulled this out of while running
+        // randomly load scripture
+        var rand = new Random();
+        // need to save this so i know which scripture until end
+        Scripture currentScripture = scriptureList[rand.Next(scriptureList.Count)]; //!! need to move this. pulls a new scripture
+
+        List<int> hiddenIndex = new List<int>();
+        int count = 0;
+
         while (running)
         {
-            // change this to a function to randomly load a scripture
-            scriptureList[scriptureList.Count() - 1].DisplayScripture();
+
+            Console.Clear();
+
+            currentScripture.DisplayScripture();
 
             Console.WriteLine("Press <enter> to hide a word or type <menu> to return to the main menu.");
-            // var input = Console.ReadKey();
-            // if(input.Key == ConsoleKey.Enter){
-            //     Console.WriteLine("Enter pressed");
-            // }
-            // else if(input.ToString() == "quit"){
-            //     Console.WriteLine("Entered Quit");
-            // }
-            // else {
-            //     Console.WriteLine("something else.");
-            //     running = false;
-            // }
 
+            // see if all words are hidden
+            // if (count != currentScripture.GetWords().Count)
+            // {
+            //     Console.WriteLine("The full scripture is hidden");
+            // }
 
             string input = Console.ReadLine().ToLower();
+
+
+
+
             if (input == "")
             {
+
                 // randomly change hidden property on a word
+
+
+                // while get an int
+                bool selected = false;
+                int randomInt = 0;
+
+
+                while (!selected)
+                {
+                    randomInt = rand.Next(currentScripture.GetWords().Count);
+
+                    if (!hiddenIndex.Contains(randomInt))
+                    {
+                        hiddenIndex.Add(randomInt);
+                        selected = true;
+                        count++;
+                    }
+                }
+
+                if (count == currentScripture.GetWords().Count)
+                {
+                    Console.WriteLine("The full scripture is hidden");
+                }
+
+                currentScripture.GetWords()[randomInt].SetHidden(true);
+                // change this to random, store random to not select again
                 // reload scripture
+                currentScripture.DisplayScripture(); // !!this is exiting and reloading another scripture as wel...
+
+
+
+
+
             }
             else if (input == "menu")
             {
                 Console.WriteLine("User pressed quit");
-                // running = false;
+                running = false;
                 Console.Clear();
                 RunMainMenu();
             }
@@ -48,8 +90,6 @@ class Program
             {
                 Console.WriteLine("Please type enter or quit.");
             }
-
-
 
         }
 
