@@ -75,6 +75,7 @@ class Program
 
                 if (count == currentScripture.GetWords().Count)
                 {
+                    //?? move all this to a reset method?
                     count = 0; // reset word counter otherwise program will never enter this block after first time
                     // running = false;
                     currentScripture.ShowAll(); // make all words visible again
@@ -82,6 +83,7 @@ class Program
                     Console.Clear();
                     // Console.WriteLine("The full scripture is hidden");
                     // Console.ReadLine();
+                    currentScripture = scriptureList[rand.Next(scriptureList.Count)]; // new random scripture
                     RunMainMenu(); //!! need to pick a random scripture after this...or maybe it is random? I only have a couple. Figure out which line it jumps to.
                 }
 
