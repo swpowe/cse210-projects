@@ -51,6 +51,18 @@ public class Scripture {
             word.SetHidden(false);
         }
     }
+
+    public int VisibleWordsRemaining(){
+        int count = 0;
+
+        foreach (var word in _words)
+        {
+            if(!word.GetHidden()){
+                count++;
+            }
+        }
+        return count;
+    }
 }
 
 

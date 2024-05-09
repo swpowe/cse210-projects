@@ -4,15 +4,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        // bool mainMenu = true;
         bool running = true;
         List<Scripture> scriptureList = CreateDefaults();
 
-        // Add a main menu to memorize or add a scripture
-        // turn this into a function...
         RunMainMenu();
 
-        //!! pulled this out of while running
         // randomly load scripture
         var rand = new Random();
         // need to save this so i know which scripture until end
@@ -30,53 +26,64 @@ class Program
 
             Console.WriteLine("Press <enter> to hide a word or type <menu> to return to the main menu.");
 
-            // see if all words are hidden
-            // if (count != currentScripture.GetWords().Count)
-            // {
-            //     Console.WriteLine("The full scripture is hidden");
-            // }
-
             string input = Console.ReadLine().ToLower();
-
-
-
 
             if (input == "")
             {
 
-                // randomly change hidden property on a word
-
-
                 // while get an int
                 bool selected = false;
                 int randomInt = 0;
+                int randomNum = 1;
+                int countWordsRemaining = currentScripture.VisibleWordsRemaining();
 
-
-                while (!selected)
+                if (countWordsRemaining >= 3)
                 {
-                    randomInt = rand.Next(currentScripture.GetWords().Count);
+                    randomNum = rand.Next(1, 4);
+                }
+                // else
+                // {
+                //     randomNum = rand.Next(1, countWordsRemaining);
+                // }
 
-                    if (!hiddenIndex.Contains(randomInt))
+
+                for (int i = 0; i < randomNum; i++)
+                {
+                    selected = false;
+
+                    while (!selected)
                     {
-                        hiddenIndex.Add(randomInt);
-                        selected = true;
-                        count++;
+                        randomInt = rand.Next(currentScripture.GetWords().Count);
+
+                        if (!hiddenIndex.Contains(randomInt))
+                        {
+                            hiddenIndex.Add(randomInt);
+                            selected = true;
+                            count++;
+                        }
+
+                        currentScripture.GetWords()[randomInt].SetHidden(true);
                     }
                 }
 
-                if (count == currentScripture.GetWords().Count)
-                {
-                    Console.WriteLine("The full scripture is hidden");
-                }
 
-                currentScripture.GetWords()[randomInt].SetHidden(true);
+
+
                 // change this to random, store random to not select again
                 // reload scripture
                 currentScripture.DisplayScripture(); // !!this is exiting and reloading another scripture as wel...
 
-
-
-
+                if (count == currentScripture.GetWords().Count)
+                {
+                    count = 0; // reset word counter otherwise program will never enter this block after first time
+                    // running = false;
+                    currentScripture.ShowAll(); // make all words visible again
+                    hiddenIndex.Clear(); // reset list of hidden word indexes
+                    Console.Clear();
+                    // Console.WriteLine("The full scripture is hidden");
+                    // Console.ReadLine();
+                    RunMainMenu(); //!! need to pick a random scripture after this...or maybe it is random? I only have a couple. Figure out which line it jumps to.
+                }
 
             }
             else if (input == "menu")
