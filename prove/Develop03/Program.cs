@@ -1,4 +1,10 @@
+// Added a main menu loop
+// Ability for the user to add scriptures and references
+// Randomize the scripture displayed to memorize
+// Only hide words that haven't been hidden
+
 using System;
+
 
 class Program
 {
@@ -12,7 +18,7 @@ class Program
         // randomly load scripture
         var rand = new Random();
         // need to save this so i know which scripture until end
-        Scripture currentScripture = scriptureList[rand.Next(scriptureList.Count)]; //!! need to move this. pulls a new scripture
+        Scripture currentScripture = scriptureList[rand.Next(scriptureList.Count)];
 
         List<int> hiddenIndex = new List<int>();
         int count = 0;
@@ -71,7 +77,7 @@ class Program
 
                 // change this to random, store random to not select again
                 // reload scripture
-                currentScripture.DisplayScripture(); // !!this is exiting and reloading another scripture as wel...
+                currentScripture.DisplayScripture();
 
                 if (count == currentScripture.GetWords().Count)
                 {
@@ -81,10 +87,9 @@ class Program
                     currentScripture.ShowAll(); // make all words visible again
                     hiddenIndex.Clear(); // reset list of hidden word indexes
                     Console.Clear();
-                    // Console.WriteLine("The full scripture is hidden");
-                    // Console.ReadLine();
+
                     currentScripture = scriptureList[rand.Next(scriptureList.Count)]; // new random scripture
-                    RunMainMenu(); //!! need to pick a random scripture after this...or maybe it is random? I only have a couple. Figure out which line it jumps to.
+                    RunMainMenu();
                 }
 
             }
@@ -127,16 +132,7 @@ class Program
                     }
                     else if (selectionInt == 2)
                     {
-                        // add scripture and ref
-                        Console.WriteLine("Add scripture selected.");
-                        string temp = Console.ReadLine();
-                        Console.WriteLine("Scripture Added...");
-
-                        // ------ pasted ------
-
-                        // scriptureList is the actual list
                         Console.WriteLine("Please enter the scripture reference in the following format\nbook,chapter,start verse, end verse.");
-                        // move this to the class. remove / hide from this
                         string reference = Console.ReadLine();
 
                         Reference fullReference = new Reference(reference);
@@ -155,7 +151,6 @@ class Program
                         addScripture.SetReference(fullReference);
                         scriptureList.Add(addScripture);
 
-                        // ----- end pasted ----
                     }
                     else
                     {
