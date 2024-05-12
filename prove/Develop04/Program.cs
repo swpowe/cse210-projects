@@ -50,15 +50,15 @@ class Program
             switch (selected)
             {
                 case 1:
-                    Console.WriteLine("Breathing Activity...");
                     Breathing breathing = new();
+                    breathing.Start();
+                    breathing.BreathingActivity();
                     break;
                 case 2:
-                    Console.WriteLine("Reflection Activity...");
                     Reflection reflection = new();
+                    reflection.Start();
                     break;
                 case 3:
-                    Console.WriteLine("Listening Activity...");
                     Listening listening = new();
                     break;
                 default:
