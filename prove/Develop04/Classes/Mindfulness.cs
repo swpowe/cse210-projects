@@ -18,20 +18,21 @@ public class Mindfulness
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("Placeholder generic static ending message...");
+        Console.WriteLine("Placeholder generic static ending message.");
     }
 
-    public void GetReady(){
+    public void GetReady()
+    {
         Console.Write("Get Ready.");
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Write(".");
-                Thread.Sleep(1000);
-                Console.Write("\b \b");
-                Console.Write("..");
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write(".");
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            Console.Write("..");
 
-            }
-            Console.Clear();
+        }
+        Console.Clear();
     }
 
     public void Start()
@@ -60,6 +61,16 @@ public class Mindfulness
         }
     }
 
-}
+    //!! some shared animation?
+    public void Pause()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write(".");
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+            Console.Write("..");
+        }
+    }
 
-// have pause functionality here
+}

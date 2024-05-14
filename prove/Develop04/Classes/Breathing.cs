@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 public class Breathing : Mindfulness
 {
     // private string _message = "Breathing has started...";
@@ -23,28 +25,37 @@ public class Breathing : Mindfulness
     private void MainBreathingLoop()
     {
         // while not hit duration...loop
-        int count = 3; //!! change this to duration evaluation
-        while (count <= 10 && count != 0)
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(_duration);
+
+        DateTime currentTime = DateTime.Now;
+
+        // int count = 3; //!! change this to duration evaluation
+
+        while (currentTime < futureTime)
         {
+            //!! change all this into a function and make the main while loop part of parent and pass in activity specific
             Console.Write("Breath In...");
             for (int i = 5; i > 0; i--)
             {
+                if (currentTime >= futureTime) break;
                 Console.Write(i);
                 Thread.Sleep(1000);
                 Console.Write("\b \b");
+                currentTime = DateTime.Now;
             }
             Console.WriteLine();
 
             Console.Write("Breath Out...");
             for (int i = 5; i > 0; i--)
             {
+                if (currentTime >= futureTime) break;
                 Console.Write(i);
                 Thread.Sleep(1000);
                 Console.Write("\b \b");
             }
             Console.WriteLine();
-            count--;
+            // count--;
         }
     }
-
 }

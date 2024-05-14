@@ -4,16 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-
-
-
-
-        // breathing.StartBreathing();
-        // reflection.StartReflection();
+        //!! Track how often then run an activity?
 
         int selection = MainMenu();
         LaunchActivity(selection);
-
 
         void Exit() //!! Clean this up!!
         {
@@ -57,6 +51,7 @@ class Program
                 case 2:
                     Reflection reflection = new();
                     reflection.Start();
+                    reflection.ReflectionActivity();
                     break;
                 case 3:
                     Listening listening = new();
@@ -94,10 +89,6 @@ class Program
 
 
         }
-
-
-
-
 
     }
 }
