@@ -3,12 +3,14 @@ public class Mindfulness
     protected int _duration; // in seconds
     private int _elapsedTime; // in seconds
 
+
+
     protected string _startingMessage = "test";
     protected string _endingMessage = "test";
 
     public Mindfulness()
     {
-
+        // _session = new();
     }
 
     public Mindfulness(int duration, string activity, string description)
@@ -16,9 +18,25 @@ public class Mindfulness
 
     }
 
-    public void DisplayEndingMessage()
+
+    public void DisplayEndingMessage(string activity)
     {
-        Console.WriteLine("Placeholder generic static ending message.");
+        Console.WriteLine("Well Done!");
+        Console.WriteLine($"You have completed {_duration} seconds of the {activity} Activity.");
+    }
+
+    // public void DisplaySessionDetails()
+    // {
+    //     Console.WriteLine($"Complete Session Log:");
+    //     foreach (var item in _session)
+    //     {
+    //         Console.WriteLine($"Activity: {item.activity} - Duration: {item.duration}");
+    //     }
+    // }
+
+    public int GetDuration()
+    {
+        return _duration;
     }
 
     public void GetReady()

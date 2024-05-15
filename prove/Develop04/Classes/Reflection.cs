@@ -44,7 +44,10 @@ public class Reflection : Mindfulness
 
         MainReflectionLoop();
 
-        DisplayEndingMessage();
+        DisplayEndingMessage("Reflection");
+        // _session.Add(("Reflection", _duration));
+
+        // DisplaySessionDetails();
     }
 
     string GetItem(List<string> list)

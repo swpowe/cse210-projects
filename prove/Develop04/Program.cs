@@ -1,16 +1,30 @@
 using System;
+// Built in some input validation
+// Track activities and duration then report to the user
 
 class Program
 {
     static void Main(string[] args)
     {
+        bool running = true;
+        List<(string activity, int duration)> _session = new();
         //!! Track how often then run an activity?
-
-        int selection = MainMenu();
-        LaunchActivity(selection);
+        while (running)
+        {
+            int selection = MainMenu();
+            LaunchActivity(selection);
+        }
 
         void Exit() //!! Clean this up!!
         {
+            Console.WriteLine("Here are your session details:");
+            foreach (var item in _session)
+            {
+                Console.WriteLine($"Activity: {item.activity} - Duration: {item.duration}");
+            }
+
+            Thread.Sleep(5000);
+
             Console.Write("Goodbye.");
             for (int i = 0; i < 3; i++)
             {
@@ -47,6 +61,7 @@ class Program
                     Breathing breathing = new();
                     breathing.Start();
                     breathing.BreathingActivity();
+                    _session.Add(("Breathing", breathing.GetDuration()));
                     break;
                 case 2:
                     Reflection reflection = new();

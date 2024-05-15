@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 public class Breathing : Mindfulness
 {
     // private string _message = "Breathing has started...";
-    public Breathing()
+    public Breathing() : base()
     {
         _startingMessage = "Welcome to the Breathing Activity.\n\nThis activity will help you relax by walking your through breathing in and out slowly.\nClear your mind and focus on your breathing.";
     }
@@ -19,7 +19,13 @@ public class Breathing : Mindfulness
         // breathe out countdown
         //
 
-        DisplayEndingMessage();
+
+        DisplayEndingMessage("Breathing");
+        //!! session end
+       
+       
+
+    //    DisplaySessionDetails();
     }
 
     private void MainBreathingLoop()
