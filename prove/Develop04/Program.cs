@@ -67,9 +67,13 @@ class Program
                     Reflection reflection = new();
                     reflection.Start();
                     reflection.ReflectionActivity();
+                    _session.Add(("Reflection", reflection.GetDuration()));
                     break;
                 case 3:
                     Listening listening = new();
+                    listening.Start();
+                    listening.ListeningActivity();
+                    _session.Add(("Listening", listening.GetDuration()));
                     break;
                 default:
                     Console.WriteLine("Something happened...pull out exit maybe?");
