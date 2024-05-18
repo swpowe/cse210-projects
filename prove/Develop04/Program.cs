@@ -17,13 +17,16 @@ class Program
 
         void Exit() //!! Clean this up!!
         {
-            Console.WriteLine("Here are your session details:");
-            foreach (var item in _session)
+            if (_session.Count != 0)
             {
-                Console.WriteLine($"Activity: {item.activity} - Duration: {item.duration}");
-            }
+                Console.WriteLine("Here are your session details:");
+                foreach (var item in _session)
+                {
+                    Console.WriteLine($"Activity: {item.activity} - Duration: {item.duration}");
+                }
 
-            Thread.Sleep(5000);
+                Thread.Sleep(5000);
+            }
 
             Console.Write("Goodbye.");
             for (int i = 0; i < 3; i++)
@@ -70,10 +73,10 @@ class Program
                     _session.Add(("Reflection", reflection.GetDuration()));
                     break;
                 case 3:
-                    Listening listening = new();
-                    listening.Start();
-                    listening.ListeningActivity();
-                    _session.Add(("Listening", listening.GetDuration()));
+                    List list = new();
+                    list.Start();
+                    list.ListActivity();
+                    _session.Add(("Listing", list.GetDuration()));
                     break;
                 default:
                     Console.WriteLine("Something happened...pull out exit maybe?");
@@ -84,7 +87,7 @@ class Program
 
         int MainMenu()
         {
-            Console.WriteLine("Menu Options:\n1. start breathing activity\n2. Start reflecting activity\n3. Start listening activity\n4. Quit");
+            Console.WriteLine("Menu Options:\n1. start breathing activity\n2. Start reflecting activity\n3. Start listing activity\n4. Quit");
             Console.WriteLine("Select a choice from the menu: ");
             string selection = Console.ReadLine();
             int selectionInt;

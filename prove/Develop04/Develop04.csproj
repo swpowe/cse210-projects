@@ -12,5 +12,6 @@
     <Content Include="Classes\Breathing.cs" />
     <Content Include="Classes\Reflection.cs" />
     <Content Include="Classes\Listening.cs" />
+    <Content Include="Classes\List.cs" />
   </ItemGroup>
 </Project>
