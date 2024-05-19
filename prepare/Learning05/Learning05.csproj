@@ -1,11 +1,17 @@
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
+  <ItemGroup>
+    <Content Include="Program.cs" />
+    <Content Include="Shape.cs" />
+    <Content Include="SquareShape.cs" />
+    <Content Include="Square.cs" />
+    <Content Include="Circle.cs" />
+    <Content Include="Rectangle.cs" />
+  </ItemGroup>
 </Project>
