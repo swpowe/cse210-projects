@@ -8,5 +8,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Program.cs" />
+    <Content Include="Goal.cs" />
+    <Content Include="Eternal" />
+    <Content Include="Simple" />
+    <Content Include="Eternal.cs" />
+    <Content Include="Simple.cs" />
+    <Content Include="Checklist.cs" />
   </ItemGroup>
 </Project>
