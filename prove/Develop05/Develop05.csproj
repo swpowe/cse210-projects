@@ -14,5 +14,7 @@
     <Content Include="Eternal.cs" />
     <Content Include="Simple.cs" />
     <Content Include="Checklist.cs" />
+    <Content Include="goals.txt" />
+    <Content Include="readme.md" />
   </ItemGroup>
 </Project>

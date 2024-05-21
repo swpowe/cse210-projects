@@ -1,0 +1,3 @@
+78
+Simple|a new goal|after the change|False|23
+Simple|another new goal|more more more|True|78
