@@ -16,5 +16,6 @@
     <Content Include="Checklist.cs" />
     <Content Include="goals.txt" />
     <Content Include="readme.md" />
+    <Content Include="goals11.txt" />
   </ItemGroup>
 </Project>

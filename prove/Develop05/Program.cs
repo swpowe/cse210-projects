@@ -162,7 +162,7 @@ class Program
                                             list.Add(e);
                                             break;
                                         case "Checklist":
-                                            Checklist c = new(values[0], values[1], values[2], int.Parse(values[3]), 3, 4); //!! change ints
+                                            Checklist c = new(values[0], values[1], values[2], int.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5])); //!! change ints
                                             list.Add(c);
                                             break;
                                         default:

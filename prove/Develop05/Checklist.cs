@@ -43,8 +43,15 @@ public class Checklist : Goal
 
     }
 
-    public int GetBonusPoints(){
+    public int GetBonusPoints()
+    {
         return _bonusPoints;
+    }
+
+    public override string GetGoalDetails()
+    {
+        string details = $"{_type}|{_name}|{_description}|{_points}|{_bonusTimes}|{_bonusPoints}";
+        return details;
     }
 
 }
