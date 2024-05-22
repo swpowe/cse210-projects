@@ -63,7 +63,7 @@ class Program
                                 Console.WriteLine("How many points are associated with this goal? ");
                                 points = int.Parse(Console.ReadLine());
 
-                                Goal simple = new(type, name, description, points);
+                                Goal simple = new(type, name, description, false, points);
                                 list.Add(simple);
 
                                 break;
@@ -76,7 +76,7 @@ class Program
                                 Console.WriteLine("How many points are associated with this goal? ");
                                 points = int.Parse(Console.ReadLine());
 
-                                Goal eternal = new(type, name, description, points);
+                                Goal eternal = new(type, name, description, false, points);
                                 list.Add(eternal);
 
                                 break;
@@ -94,7 +94,7 @@ class Program
                                 Console.WriteLine("What is the bonus for accomplishing it that many times? ");
                                 int bonusPoints = int.Parse(Console.ReadLine());
 
-                                Checklist checklist = new(type, name, description, points, bonusTimes, bonusPoints);
+                                Checklist checklist = new(type, name, description, false, points, bonusTimes, bonusPoints);
                                 list.Add(checklist);
 
                                 break;
@@ -154,15 +154,15 @@ class Program
                                     switch (goalType)
                                     {
                                         case "Simple":
-                                            Simple s = new(values[0], values[1], values[2], int.Parse(values[3]));
+                                            Simple s = new(values[0], values[1], values[2], bool.Parse(values[3]), int.Parse(values[4]));
                                             list.Add(s);
                                             break;
                                         case "Eternal":
-                                            Eternal e = new(values[0], values[1], values[2], int.Parse(values[3]));
+                                            Eternal e = new(values[0], values[1], values[2], bool.Parse(values[3]), int.Parse(values[4]));
                                             list.Add(e);
                                             break;
                                         case "Checklist":
-                                            Checklist c = new(values[0], values[1], values[2], int.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5])); //!! change ints
+                                            Checklist c = new(values[0], values[1], values[2], bool.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5]), int.Parse(values[6])); //!! change ints
                                             list.Add(c);
                                             break;
                                         default:
@@ -184,6 +184,7 @@ class Program
                         // which goal did you accomplish
                         Console.WriteLine("Which goal did you accomplish?");
                         int choice = int.Parse(Console.ReadLine());
+
                         Goal item = list[choice - 1];
 
                         if (item.GetGoalType() == "Eternal")
@@ -193,10 +194,13 @@ class Program
                         
                         item.MarkCompleted(); //!! what about Eternal Goals
 
-                        // if (item.GetGoalType() == "Checklist")
+                        // if (item.GetGoalType() == "Checklist") //!! this isn't working  to reload status
+                        // // !! need to make it an actual object?
                         // {
-                        //     if(item.GetBonusPoints())
-                        //     Console.WriteLine("Eternal goals aren't complete in this life but we'll give you points anyways. ;)");
+                        //     // string line = item.GetGoalDetails();
+                        //     // string[] values = line.Split("|");
+                            
+
                         // }
 
                         // congrats you earned __ points

@@ -4,13 +4,13 @@ public class Goal
     protected int _points;
     protected string _type;
     protected bool _completed;
-    public Goal(string type, string name, string description, int points)
+    public Goal(string type, string name, string description, bool completed,int points)
     {
         _type = type;
         _name = name;
         _description = description;
         _points = points;
-        _completed = false;
+        _completed = completed;
     }
 
     // virtual with defaults to display name, description?
@@ -32,7 +32,7 @@ public class Goal
 
     public virtual string GetGoalDetails()
     {
-        string details = $"{_type}|{_name}|{_description}|{_points}";
+        string details = $"{_type}|{_name}|{_description}|{_completed}|{_points}";
         return details;
     }
 
@@ -41,7 +41,7 @@ public class Goal
         _completed = true;
     }
 
-    public int GetPoints()
+    public virtual int GetPoints()
     {
         return _points;
     }

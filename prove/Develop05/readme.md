@@ -6,5 +6,8 @@ Monday 20th.
 - worked to modify but then it didn't read back in the status?
 
 Tuesday 21st.
-- hit a snag with completing a task. Perhaps need to turn that into a class method
-- can't currently tally extra points for checklist item
+x- hit a snag with completing a task. Perhaps need to turn that into a class method
+x- can't currently tally extra points for checklist item
+
+- Checklist number completed out of isn't getting loaded
+- might need to create actual objects when I record event? 

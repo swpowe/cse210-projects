@@ -3,11 +3,11 @@ public class Checklist : Goal
     private int _bonusTimes, _bonusPoints, _completedTimes;
     private bool _bonusAchieved = false;
 
-    public Checklist(string type, string name, string description, int points, int bonusTimes, int bonusPoints) : base(type, name, description, points)
+    public Checklist(string type, string name, string description, bool completed, int points, int bonusTimes, int bonusPoints) : base(type, name, description, completed, points)
     {
         _bonusTimes = bonusTimes;
         _bonusPoints = bonusPoints;
-        _completed = false;
+        _completed = completed;
         _completedTimes = 0;
     }
 
@@ -31,27 +31,43 @@ public class Checklist : Goal
     public override void MarkCompleted()
     {
         _completed = true;
+        _completedTimes++;
         if (_completedTimes == _bonusTimes)
         {
-            _completedTimes = 0;
+            // _completedTimes = 0;
             _bonusAchieved = true;
+            // _points = _points + _bonusPoints;
         }
         else
         {
-            _completedTimes++;
+            // _bonusAchieved = false;
+            // _completedTimes++;
+            _bonusAchieved = false;
         }
 
     }
 
-    public int GetBonusPoints()
-    {
-        return _bonusPoints;
-    }
 
     public override string GetGoalDetails()
     {
-        string details = $"{_type}|{_name}|{_description}|{_points}|{_bonusTimes}|{_bonusPoints}";
+        string details = $"{_type}|{_name}|{_description}|{_completed}|{_points}|{_bonusTimes}|{_bonusPoints}";
         return details;
     }
+
+
+    public override int GetPoints()
+    {
+        if (_bonusAchieved)
+        {
+            return _bonusPoints + _points;
+        }
+        else
+        {
+            return _points;
+        }
+
+        // return base.GetPoints();
+    }
+
 
 }
