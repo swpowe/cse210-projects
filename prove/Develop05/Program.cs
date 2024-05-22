@@ -36,7 +36,7 @@ class Program
                 switch (selection) // selection is int
                 {
                     case 1:
-                        string type = "Simple"; //!! need to modify this based on their choice in 2nd menu
+                        string type = ""; //!! need to modify this based on their choice in 2nd menu
                         string name = "";
                         string description = "";
                         int points = 0;
@@ -48,33 +48,63 @@ class Program
                         while (!subIsInt || (selection <= 0 || selection >= 5))
                         {
                             Console.WriteLine("Please enter a valid number between 1 and 4");
+                            subIsInt = int.TryParse(Console.ReadLine(), out selection);
                         }
 
                         switch (selection)
                         {
                             case 1: // simple
-                                    //!! turn this into a function with overloads maybe?
+                                type = "Simple";
+                                //!! turn this into a function with overloads maybe?
                                 Console.WriteLine("What is the name of your goal? ");
                                 name = Console.ReadLine();
                                 Console.WriteLine("What is a brief description for your goal? ");
                                 description = Console.ReadLine();
                                 Console.WriteLine("How many points are associated with this goal? ");
                                 points = int.Parse(Console.ReadLine());
+
+                                Goal simple = new(type, name, description, points);
+                                list.Add(simple);
+
                                 break;
                             case 2: // eternal
+                                type = "Eternal";
+                                Console.WriteLine("What is the name of your goal? ");
+                                name = Console.ReadLine();
+                                Console.WriteLine("What is a brief description for your goal? ");
+                                description = Console.ReadLine();
+                                Console.WriteLine("How many points are associated with this goal? ");
+                                points = int.Parse(Console.ReadLine());
+
+                                Goal eternal = new(type, name, description, points);
+                                list.Add(eternal);
+
                                 break;
                             case 3: // checklist
+                                type = "Checklist";
+                                Console.WriteLine("What is the name of your goal? ");
+                                name = Console.ReadLine();
+                                Console.WriteLine("What is a brief description for your goal? ");
+                                description = Console.ReadLine();
+                                Console.WriteLine("How many points are associated with this goal? ");
+                                points = int.Parse(Console.ReadLine());
+
+                                Console.WriteLine("How many times does your goal have to be accomplished to get a bonus? ");
+                                int bonusTimes = int.Parse(Console.ReadLine());
+                                Console.WriteLine("What is the bonus for accomplishing it that many times? ");
+                                int bonusPoints = int.Parse(Console.ReadLine());
+
+                                Checklist checklist = new(type, name, description, points, bonusTimes, bonusPoints);
+                                list.Add(checklist);
+
                                 break;
                             case 4: // return to main menu
                                 break;
                             default:
+
                                 break;
                         }
 
-
-
-                        Simple goal = new(type, name, description, points);
-                        list.Add(goal);
                         break;
                     case 2: // list goals
                         ListGoals();
@@ -160,7 +190,15 @@ class Program
                         {
                             Console.WriteLine("Eternal goals aren't complete in this life but we'll give you points anyways. ;)");
                         }
+                        
                         item.MarkCompleted(); //!! what about Eternal Goals
+
+                        // if (item.GetGoalType() == "Checklist")
+                        // {
+                        //     if(item.GetBonusPoints())
+                        //     Console.WriteLine("Eternal goals aren't complete in this life but we'll give you points anyways. ;)");
+                        // }
+
                         // congrats you earned __ points
                         totalPoints += item.GetPoints();
                         Console.WriteLine($"Congratulations! You earned {item.GetPoints()}!");

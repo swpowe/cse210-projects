@@ -36,7 +36,7 @@ public class Goal
         return details;
     }
 
-    public void MarkCompleted()
+    public virtual void MarkCompleted()
     {
         _completed = true;
     }
