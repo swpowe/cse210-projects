@@ -82,6 +82,7 @@ class Program
                                 break;
                             case 3: // checklist
                                 type = "Checklist";
+                                int completedTimes = 0;
                                 Console.WriteLine("What is the name of your goal? ");
                                 name = Console.ReadLine();
                                 Console.WriteLine("What is a brief description for your goal? ");
@@ -94,7 +95,7 @@ class Program
                                 Console.WriteLine("What is the bonus for accomplishing it that many times? ");
                                 int bonusPoints = int.Parse(Console.ReadLine());
 
-                                Checklist checklist = new(type, name, description, false, points, bonusTimes, bonusPoints);
+                                Checklist checklist = new(type, name, description, false, points, completedTimes, bonusTimes, bonusPoints);
                                 list.Add(checklist);
 
                                 break;
@@ -162,7 +163,7 @@ class Program
                                             list.Add(e);
                                             break;
                                         case "Checklist":
-                                            Checklist c = new(values[0], values[1], values[2], bool.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5]), int.Parse(values[6])); //!! change ints
+                                            Checklist c = new(values[0], values[1], values[2], bool.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5]), int.Parse(values[6]), int.Parse(values[7])); //!! change ints
                                             list.Add(c);
                                             break;
                                         default:

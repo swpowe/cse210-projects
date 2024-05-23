@@ -18,5 +18,6 @@
     <Content Include="readme.md" />
     <Content Include="goals11.txt" />
     <Content Include="goals12.txt" />
+    <Content Include="goals30.txt" />
   </ItemGroup>
 </Project>

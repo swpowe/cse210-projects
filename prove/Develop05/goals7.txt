@@ -1,3 +1,0 @@
-23
-Simple|revert goal|goal 1|False|34
-Simple|another reverted goal|decig|True|23

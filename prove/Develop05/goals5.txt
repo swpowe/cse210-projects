@@ -1,3 +1,0 @@
-990
-Simple|a new goal next day|next day goal|23
-Simple|another simple goal next day|another next day simple goal|990

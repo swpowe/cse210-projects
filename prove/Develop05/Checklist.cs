@@ -3,12 +3,12 @@ public class Checklist : Goal
     private int _bonusTimes, _bonusPoints, _completedTimes;
     private bool _bonusAchieved = false;
 
-    public Checklist(string type, string name, string description, bool completed, int points, int bonusTimes, int bonusPoints) : base(type, name, description, completed, points)
+    public Checklist(string type, string name, string description, bool completed, int points, int completedTimes, int bonusTimes, int bonusPoints) : base(type, name, description, completed, points)
     {
         _bonusTimes = bonusTimes;
         _bonusPoints = bonusPoints;
         _completed = completed;
-        _completedTimes = 0;
+        _completedTimes = completedTimes;
     }
 
     public override void DisplayGoal()
@@ -50,7 +50,7 @@ public class Checklist : Goal
 
     public override string GetGoalDetails()
     {
-        string details = $"{_type}|{_name}|{_description}|{_completed}|{_points}|{_bonusTimes}|{_bonusPoints}";
+        string details = $"{_type}|{_name}|{_description}|{_completed}|{_points}|{_completedTimes}|{_bonusTimes}|{_bonusPoints}";
         return details;
     }
 
